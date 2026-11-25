@@ -1,0 +1,470 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Rumbo · Prepara tu título náutico</title>
+  <meta name="description" content="Prepara el PNB, el PER, el Patrón de Yate o el Capitán de Yate con preguntas reales de examen, ejercicios de carta paso a paso y un plan de estudio a tu medida." />
+  <meta name="theme-color" content="#0C2043" />
+  <meta property="og:title" content="Rumbo · Prepara tu título náutico" />
+  <meta property="og:description" content="Preguntas reales de examen, ejercicios de carta paso a paso y un plan que te dice qué estudiar cada día. PNB, PER, Patrón y Capitán de Yate." />
+  <meta property="og:image" content="https://rumboapp-soporte.github.io/web/img/compartir-rumbo.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:url" content="https://rumboapp-soporte.github.io/web/" />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://rumboapp-soporte.github.io/web/img/compartir-rumbo.jpg" />
+  <link rel="icon" href="favicon.png" />
+  <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,600&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <script>
+    // ⚓ Enlaces de las tiendas. Rellena APP_STORE cuando la app esté publicada en App Store.
+    window.RUMBO_WEB = {
+      appStore: "https://apps.apple.com/es/app/rumbo-test-pnb-per-y-yate/id6838044348",
+      googlePlay: "", // p. ej. https://play.google.com/store/apps/details?id=com.mowylibra.rumbo
+      correo: "",
+    };
+  </script>
+  <style>
+    :root {
+      --crema: #F5F1E8; --crema-2: #EEE7D9; --papel: #FFFCF6; --marino: #0C2043; --marino-2: #16305E;
+      --tinta: #0C2043; --tinta-suave: #4A5670; --tenue: #7D879C; --coral: #E8572F; --coral-osc: #B83F1C;
+      --estribor: #1E7A55; --babor: #C23B2A; --linea: rgba(12,32,67,.10);
+      --radio: 22px; --ancho: 1120px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: "Manrope", system-ui, sans-serif; color: var(--tinta); background: var(--crema); line-height: 1.55; -webkit-font-smoothing: antialiased; }
+    img { max-width: 100%; height: auto; display: block; }
+    a { color: inherit; }
+    h1, h2, h3 { font-family: "Fraunces", Georgia, serif; font-weight: 600; letter-spacing: -.01em; line-height: 1.08; }
+    em { font-family: "Fraunces", Georgia, serif; font-style: italic; color: var(--coral); font-weight: 600; }
+    .envoltorio { width: min(var(--ancho), 100% - 40px); margin-inline: auto; }
+    .etiqueta { display: inline-block; font-size: 12px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--coral-osc); }
+
+    /* Retícula de carta náutica de fondo */
+    .reticula { background-image: linear-gradient(var(--linea) 1px, transparent 1px), linear-gradient(90deg, var(--linea) 1px, transparent 1px); background-size: 56px 56px; }
+
+    /* Cabecera */
+    header { position: sticky; top: 0; z-index: 10; background: color-mix(in srgb, var(--crema) 88%, transparent); backdrop-filter: blur(10px); border-bottom: 1px solid var(--linea); }
+    .cab { display: flex; align-items: center; justify-content: space-between; height: 68px; }
+    .marca { display: flex; align-items: center; gap: 10px; text-decoration: none; font-family: "Fraunces", serif; font-weight: 600; font-size: 22px; }
+    .marca img { width: 36px; height: 36px; border-radius: 10px; }
+    nav.menu { display: flex; gap: 28px; font-weight: 600; font-size: 15px; }
+    nav.menu a { text-decoration: none; color: var(--tinta-suave); }
+    nav.menu a:hover { color: var(--tinta); }
+    .boton { display: inline-flex; align-items: center; gap: 10px; padding: 14px 22px; border-radius: 999px; background: var(--coral); color: #fff; font-weight: 700; text-decoration: none; transition: transform .15s ease, box-shadow .15s ease; box-shadow: 0 8px 22px rgba(232,87,47,.28); }
+    .boton:hover { transform: translateY(-1px); box-shadow: 0 12px 26px rgba(232,87,47,.34); }
+    .boton.peq { padding: 10px 18px; font-size: 14px; box-shadow: none; }
+
+    /* Portada */
+    .portada { padding: 72px 0 40px; overflow: hidden; }
+    .portada .rejilla { display: grid; grid-template-columns: 1.05fr .95fr; gap: 48px; align-items: center; }
+    .portada h1 { font-size: clamp(42px, 6vw, 72px); margin: 14px 0 20px; }
+    .portada p.lead { font-size: clamp(17px, 1.6vw, 20px); color: var(--tinta-suave); max-width: 33ch; }
+    .titulos { display: flex; gap: 8px; flex-wrap: wrap; margin: 26px 0 30px; }
+    .titulos span { padding: 7px 13px; border-radius: 999px; background: var(--papel); border: 1px solid var(--linea); font-weight: 700; font-size: 14px; }
+    .tiendas { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
+    .tienda { display: inline-flex; align-items: center; gap: 10px; padding: 11px 18px; border-radius: 14px; background: var(--marino); color: #fff; text-decoration: none; min-width: 190px; transition: transform .15s; }
+    .tienda:hover { transform: translateY(-1px); }
+    .tienda small { display: block; font-size: 11px; opacity: .75; line-height: 1.1; }
+    .tienda strong { display: block; font-size: 17px; line-height: 1.15; }
+    .tienda.pronto { opacity: .55; pointer-events: none; }
+    .tienda svg { width: 26px; height: 26px; flex: none; }
+    .escena { position: relative; display: flex; justify-content: center; }
+    .rosa { position: absolute; width: 560px; max-width: 120%; top: 50%; left: 50%; transform: translate(-50%, -50%); opacity: .5; pointer-events: none; }
+    .movil { position: relative; width: min(320px, 78vw); border-radius: 48px; background: #12161E; padding: 11px; box-shadow: 0 40px 80px rgba(12,32,67,.28), 0 2px 0 rgba(255,255,255,.08) inset; }
+    .movil img { border-radius: 38px; }
+    .movil.inclinado { transform: rotate(-3deg); }
+    .flotante { position: absolute; background: var(--papel); border: 1px solid var(--linea); border-radius: 16px; padding: 12px 14px; box-shadow: 0 14px 34px rgba(12,32,67,.14); font-size: 14px; display: flex; gap: 10px; align-items: center; }
+    .flotante b { font-family: "Fraunces", serif; font-size: 22px; color: var(--coral); }
+    .f1 { left: -8px; top: 22%; } .f2 { right: -4px; bottom: 16%; }
+
+    /* Cifras */
+    .cifras { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin: 56px 0 0; }
+    .cifra { background: var(--papel); border: 1px solid var(--linea); border-radius: var(--radio); padding: 22px; }
+    .cifra b { display: block; font-family: "Fraunces", serif; font-size: 38px; line-height: 1; color: var(--marino); }
+    .cifra span { color: var(--tinta-suave); font-size: 15px; }
+
+    /* Secciones */
+    section { padding: 96px 0; }
+    .cabecera-sec { max-width: 640px; margin-bottom: 48px; }
+    .cabecera-sec h2 { font-size: clamp(32px, 4.2vw, 50px); margin-top: 10px; }
+    .cabecera-sec p { color: var(--tinta-suave); font-size: 18px; margin-top: 14px; }
+
+    .funcion { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; padding: 36px 0; }
+    .funcion:nth-of-type(even) .texto { order: 2; }
+    .funcion h3 { font-size: clamp(26px, 3vw, 36px); margin: 10px 0 14px; }
+    .funcion p { color: var(--tinta-suave); font-size: 17px; max-width: 44ch; }
+    .funcion ul { list-style: none; margin-top: 18px; display: grid; gap: 10px; }
+    .funcion li { display: flex; gap: 10px; align-items: flex-start; font-weight: 500; }
+    .funcion li::before { content: ""; flex: none; width: 20px; height: 20px; margin-top: 2px; border-radius: 50%; background: var(--estribor) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7.5'/%3E%3C/svg%3E") center/12px no-repeat; }
+    .funcion .imagen { display: flex; justify-content: center; background: var(--crema-2); border-radius: 32px; padding: 44px 20px; }
+    .funcion .imagen .movil { width: min(280px, 70vw); }
+
+    /* Oscura: cómo funciona */
+    .oscura { background: var(--marino); color: var(--crema); position: relative; overflow: hidden; }
+    .oscura .reticula-o { position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px); background-size: 56px 56px; }
+    .oscura .etiqueta { color: #FF9C7E; }
+    .oscura .cabecera-sec p { color: #B4BCD0; }
+    .pasos { position: relative; display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .paso { background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.12); border-radius: var(--radio); padding: 28px; }
+    .paso .n { font-family: "Fraunces", serif; font-size: 44px; color: var(--coral); line-height: 1; }
+    .paso h3 { font-size: 23px; margin: 14px 0 8px; }
+    .paso p { color: #B4BCD0; }
+
+    /* Títulos */
+    .tarjetas { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+    .titulo { background: var(--papel); border: 1px solid var(--linea); border-radius: var(--radio); padding: 24px; display: flex; flex-direction: column; gap: 10px; }
+    .titulo .sigla { width: 52px; height: 52px; border-radius: 14px; display: grid; place-items: center; background: var(--marino); color: #fff; font-family: "Fraunces", serif; font-size: 18px; }
+    .titulo h3 { font-size: 21px; }
+    .titulo p { color: var(--tinta-suave); font-size: 15px; flex: 1; }
+    .titulo .formato { font-size: 13px; font-weight: 700; color: var(--coral-osc); border-top: 1px solid var(--linea); padding-top: 10px; }
+
+
+    /* Precios */
+    .prueba { display: flex; gap: 18px; align-items: center; background: var(--papel); border: 1px solid var(--linea); border-radius: var(--radio); padding: 22px 26px; margin-bottom: 20px; }
+    .prueba .regalo { flex: none; width: 52px; height: 52px; border-radius: 16px; display: grid; place-items: center; background: color-mix(in srgb, var(--coral) 14%, transparent); font-size: 26px; }
+    .prueba h3 { font-size: 22px; }
+    .prueba p { color: var(--tinta-suave); margin-top: 4px; }
+    .planes { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; align-items: stretch; }
+    .planc { border-radius: 28px; padding: 32px; display: flex; flex-direction: column; background: var(--papel); border: 1px solid var(--linea); }
+    .planc h3 { font-size: 28px; }
+    .planc .precio { margin: 10px 0 4px; font-family: "Fraunces", serif; font-size: 44px; line-height: 1; }
+    .planc .precio small { font-family: "Manrope", sans-serif; font-size: 16px; font-weight: 600; color: var(--tenue); }
+    .planc .nota { color: var(--tinta-suave); font-size: 15px; }
+    .planc ul { list-style: none; display: grid; gap: 12px; margin: 24px 0 0; flex: 1; }
+    .planc li { display: flex; gap: 10px; align-items: flex-start; }
+    .planc li::before { content: "✓"; flex: none; width: 22px; height: 22px; border-radius: 50%; display: grid; place-items: center; font-size: 12px; font-weight: 800; background: color-mix(in srgb, var(--estribor) 16%, transparent); color: var(--estribor); margin-top: 1px; }
+    .planc.premium { background: var(--marino); color: var(--crema); border-color: var(--marino); position: relative; box-shadow: 0 30px 60px rgba(12,32,67,.22); }
+    .planc.premium .nota { color: #B4BCD0; }
+    .planc.premium .precio small { color: #B4BCD0; }
+    .planc.premium li::before { background: var(--coral); color: #fff; }
+    .planc .sello { position: absolute; top: 24px; right: 24px; background: var(--coral); color: #fff; font-size: 12px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; padding: 6px 11px; border-radius: 999px; }
+    .planc .boton { margin-top: 28px; justify-content: center; }
+    .planc .boton.claro { background: transparent; color: var(--tinta); border: 1.5px solid var(--linea); box-shadow: none; }
+    .letra { color: var(--tenue); font-size: 13.5px; margin-top: 16px; text-align: center; }
+
+    /* Preguntas */
+    .faq { max-width: 780px; }
+    details { background: var(--papel); border: 1px solid var(--linea); border-radius: 16px; padding: 18px 22px; margin-bottom: 12px; }
+    summary { cursor: pointer; font-weight: 700; font-size: 17px; list-style: none; display: flex; justify-content: space-between; gap: 16px; }
+    summary::after { content: "+"; font-family: "Fraunces", serif; font-size: 26px; line-height: 1; color: var(--coral); transition: transform .2s; }
+    details[open] summary::after { transform: rotate(45deg); }
+    details p { color: var(--tinta-suave); margin-top: 10px; }
+
+    /* Llamada final */
+    .final { text-align: center; }
+    .final .caja { background: var(--marino); color: var(--crema); border-radius: 36px; padding: 72px 28px; position: relative; overflow: hidden; }
+    .final h2 { font-size: clamp(34px, 5vw, 58px); }
+    .final p { color: #B4BCD0; font-size: 18px; margin: 16px auto 30px; max-width: 46ch; }
+    .final .tiendas { justify-content: center; }
+    .final .tienda { background: var(--crema); color: var(--marino); }
+
+    footer { padding: 40px 0 56px; color: var(--tenue); font-size: 14px; }
+    footer .pie { display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; align-items: center; }
+    footer nav { display: flex; gap: 20px; flex-wrap: wrap; }
+    footer a { text-decoration: none; }
+    footer a:hover { color: var(--tinta); }
+
+    .aparece { opacity: 0; transform: translateY(18px); transition: opacity .7s ease, transform .7s ease; }
+    .aparece.visible { opacity: 1; transform: none; }
+    @media (prefers-reduced-motion: reduce) { .aparece { opacity: 1; transform: none; transition: none; } html { scroll-behavior: auto; } }
+
+    @media (max-width: 960px) {
+      nav.menu { display: none; }
+      .portada .rejilla, .funcion { grid-template-columns: 1fr; gap: 40px; }
+      .funcion:nth-of-type(even) .texto { order: 0; }
+      .cifras, .tarjetas { grid-template-columns: repeat(2, 1fr); }
+      .planes { grid-template-columns: 1fr; }
+      .pasos { grid-template-columns: 1fr; }
+      section { padding: 72px 0; }
+      .portada { padding-top: 40px; }
+    }
+    @media (max-width: 520px) {
+      .cifras, .tarjetas { grid-template-columns: 1fr 1fr; gap: 10px; }
+      .cifra { padding: 16px; } .cifra b { font-size: 30px; }
+      .tarjetas { grid-template-columns: 1fr; }
+      .flotante { display: none; }
+      .tienda { min-width: 0; flex: 1; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="envoltorio cab">
+      <a class="marca" href="#"><img src="icon.png" alt="" />Rumbo</a>
+      <nav class="menu">
+        <a href="#funciones">Qué incluye</a>
+        <a href="#como">Cómo funciona</a>
+        <a href="#titulos">Títulos</a>
+        <a href="#precios">Precios</a>
+        <a href="#preguntas">Preguntas</a>
+      </nav>
+      <a class="boton peq" href="#descargar">Descargar</a>
+    </div>
+  </header>
+
+  <main>
+    <!-- Portada -->
+    <div class="portada reticula">
+      <div class="envoltorio">
+        <div class="rejilla">
+          <div class="aparece">
+            <span class="etiqueta">Tu título náutico</span>
+            <h1>Aprueba el examen <em>sin perder el norte</em></h1>
+            <p class="lead">Exámenes oficiales, ejercicios de carta explicados paso a paso y un plan que te dice qué estudiar cada día hasta tu convocatoria.</p>
+            <div class="titulos"><span>PNB</span><span>PER</span><span>Patrón de Yate</span><span>Capitán de Yate</span></div>
+            <div class="tiendas" data-tiendas></div>
+          </div>
+          <div class="escena aparece">
+            <svg class="rosa" viewBox="0 0 200 200" aria-hidden="true"><g fill="none" stroke="#0C2043" stroke-opacity=".14"><circle cx="100" cy="100" r="96"/><circle cx="100" cy="100" r="70"/><circle cx="100" cy="100" r="40"/></g><g fill="#0C2043" fill-opacity=".10"><path d="M100 4 108 100 100 196 92 100Z"/><path d="M4 100 100 92 196 100 100 108Z"/><path d="M32 32 104 96 168 168 96 104Z" opacity=".6"/><path d="M168 32 104 104 32 168 96 96Z" opacity=".6"/></g></svg>
+            <div class="movil inclinado"><img src="img/hoy.jpg" alt="Pantalla Hoy de Rumbo con la cuenta atrás al examen y la sesión del día" width="560" height="1218" /></div>
+            <div class="flotante f1"><b>🔥 12</b><span>días seguidos<br />estudiando</span></div>
+            <div class="flotante f2"><b>✓</b><span>«¿Aprobarías hoy?»<br />con los criterios del tribunal</span></div>
+          </div>
+        </div>
+        <div class="cifras aparece">
+          <div class="cifra"><b>+2.400</b><span>preguntas de exámenes oficiales</span></div>
+          <div class="cifra"><b>+140</b><span>exámenes oficiales desde 2021</span></div>
+          <div class="cifra"><b>4</b><span>títulos: PNB, PER, PY y CY</span></div>
+          <div class="cifra"><b>7 días</b><span>con todo desbloqueado, sin tarjeta</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Funciones -->
+    <section id="funciones">
+      <div class="envoltorio">
+        <div class="cabecera-sec aparece">
+          <span class="etiqueta">Qué incluye</span>
+          <h2>Todo lo que necesitas, <em>en un solo sitio</em></h2>
+          <p>Nada de PDF sueltos ni apuntes desordenados. Rumbo te acompaña desde el primer día hasta el examen.</p>
+        </div>
+
+        <div class="funcion aparece">
+          <div class="texto">
+            <span class="etiqueta">Practicar</span>
+            <h3>Las preguntas que caen de verdad</h3>
+            <p>Todas las convocatorias oficiales de la Marina Mercante, con la respuesta correcta y la explicación de por qué.</p>
+            <ul>
+              <li>Tests por materia, repaso de fallos y las preguntas que más se repiten</li>
+              <li>Simulacros con el tiempo y los criterios reales del tribunal</li>
+              <li>Las tablas de mareas y del almanaque, a la vista mientras respondes</li>
+            </ul>
+          </div>
+          <div class="imagen"><div class="movil"><img src="img/test.jpg" alt="Pregunta de examen oficial en Rumbo" loading="lazy" width="560" height="1218" /></div></div>
+        </div>
+
+        <div class="funcion aparece">
+          <div class="texto">
+            <span class="etiqueta">Ejercicios</span>
+            <h3>La carta y los cálculos, paso a paso</h3>
+            <p>Cada tipo de problema tiene su ficha: lo clave en dos minutos, el método, los errores típicos y los ejercicios reales de examen.</p>
+            <ul>
+              <li>Dibujos claros de rumbos, corrientes, mareas y abatimiento</li>
+              <li>Ejercicios resueltos en vídeo, a lápiz e infografías</li>
+              <li>Del rumbo con viento a la recta de altura</li>
+            </ul>
+          </div>
+          <div class="imagen"><div class="movil"><img src="img/bloque.jpg" alt="Ficha de ejercicio de rumbo con viento" loading="lazy" width="560" height="1218" /></div></div>
+        </div>
+
+        <div class="funcion aparece">
+          <div class="texto">
+            <span class="etiqueta">Plan de estudio</span>
+            <h3>Un plan honesto, hecho a tu medida</h3>
+            <p>Dinos qué título preparas, cuándo te examinas y cuánto tiempo tienes al día. Rumbo calcula si llegas y reparte el temario.</p>
+            <ul>
+              <li>Teoría, ejercicios y preguntas para cada día</li>
+              <li>Simulacros en las últimas semanas</li>
+              <li>Recordatorios para no perder la racha</li>
+            </ul>
+          </div>
+          <div class="imagen"><div class="movil"><img src="img/plan.jpg" alt="Plan de estudio con las etapas hasta el examen" loading="lazy" width="560" height="1218" /></div></div>
+        </div>
+
+        <div class="funcion aparece">
+          <div class="texto">
+            <span class="etiqueta">Tutor</span>
+            <h3>Pregunta lo que no entiendas</h3>
+            <p>Un tutor con inteligencia artificial que conoce el temario oficial y te lo explica con calma, con ejemplos y con la terminología del examen.</p>
+            <ul>
+              <li>«¿Por qué es la B?» en cualquier pregunta</li>
+              <li>Trucos para memorizar luces, marcas y señales</li>
+              <li>Cálculos explicados número a número</li>
+            </ul>
+          </div>
+          <div class="imagen"><div class="movil"><img src="img/tutor.jpg" alt="Tutor de náutica con preguntas sugeridas" loading="lazy" width="560" height="1218" /></div></div>
+        </div>
+
+        <div class="funcion aparece">
+          <div class="texto">
+            <span class="etiqueta">Teoría</span>
+            <h3>El temario, claro y con dibujos</h3>
+            <p>Lecciones cortas basadas en el programa oficial, con lo que de verdad entra en el examen: balizamiento, RIPA, meteorología, navegación…</p>
+          </div>
+          <div class="imagen"><div class="movil"><img src="img/teoria.jpg" alt="Lección de balizamiento con las marcas laterales" loading="lazy" width="560" height="1218" /></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Cómo funciona -->
+    <section id="como" class="oscura">
+      <div class="reticula-o"></div>
+      <div class="envoltorio" style="position:relative">
+        <div class="cabecera-sec aparece">
+          <span class="etiqueta">Cómo funciona</span>
+          <h2>Tres pasos y <em>a navegar</em></h2>
+          <p>En un minuto tienes tu plan listo.</p>
+        </div>
+        <div class="pasos">
+          <div class="paso aparece"><div class="n">1</div><h3>Elige tu título</h3><p>PNB, PER, Patrón de Yate o Capitán de Yate. Si ya tienes el PNB, el PER solo con las materias que te faltan.</p></div>
+          <div class="paso aparece"><div class="n">2</div><h3>Marca tu convocatoria</h3><p>Tenemos las fechas de exámenes de cada comunidad. Elige la tuya y el tiempo que tienes al día.</p></div>
+          <div class="paso aparece"><div class="n">3</div><h3>Sigue tu sesión de hoy</h3><p>Cada día sabes qué leer, qué ejercicios hacer y cuántas preguntas toca. Y si fallas, vuelve en el repaso.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Títulos -->
+    <section id="titulos">
+      <div class="envoltorio">
+        <div class="cabecera-sec aparece">
+          <span class="etiqueta">Títulos</span>
+          <h2>Del primer título <em>al de Capitán</em></h2>
+          <p>Con el formato oficial de cada examen, sus materias eliminatorias y los criterios para aprobar.</p>
+        </div>
+        <div class="tarjetas">
+          <div class="titulo aparece"><div class="sigla">PNB</div><h3>Patrón de Navegación Básica</h3><p>Tu primer título: barcos de hasta 8 m y 5 millas de un abrigo.</p><div class="formato">27 preguntas · 45 min</div></div>
+          <div class="titulo aparece"><div class="sigla">PER</div><h3>Patrón de Embarcaciones de Recreo</h3><p>El más popular: hasta 15 m (24 m con prácticas) y 12 millas de la costa.</p><div class="formato">45 preguntas · 1 h 30</div></div>
+          <div class="titulo aparece"><div class="sigla">PY</div><h3>Patrón de Yate</h3><p>Hasta 24 m y 150 millas de la costa. Navegación de altura y meteorología.</p><div class="formato">40 preguntas · 2 h</div></div>
+          <div class="titulo aparece"><div class="sigla">CY</div><h3>Capitán de Yate</h3><p>Sin límite de distancia. Navegación astronómica, cálculos e inglés.</p><div class="formato">40 preguntas · 2 h 30</div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Precios -->
+    <section id="precios" style="padding-top:0">
+      <div class="envoltorio">
+        <div class="cabecera-sec aparece">
+          <span class="etiqueta">Precios</span>
+          <h2>Empieza gratis, <em>sigue a tu ritmo</em></h2>
+          <p>Prueba todo durante una semana y luego elige: quedarte con lo básico para siempre o tenerlo todo con Premium.</p>
+        </div>
+        <div class="prueba aparece">
+          <div class="regalo">🎁</div>
+          <div>
+            <h3>Empieza con 7 días de Rumbo completo, gratis</h3>
+            <p>Al crear tu cuenta tienes una semana con todo desbloqueado y no te pedimos tarjeta. Pruébalo a fondo y luego decides.</p>
+          </div>
+        </div>
+        <div class="planes">
+          <div class="planc aparece">
+            <h3>Plan gratuito</h3>
+            <div class="precio">0 € <small>para siempre</small></div>
+            <p class="nota">Sin pagar nada.</p>
+            <ul>
+              <li>Toda la teoría, con sus dibujos</li>
+              <li>25 preguntas al día de test por materia o test rápido</li>
+              <li>1 simulacro a la semana con los criterios del tribunal</li>
+              <li>3 preguntas al día al tutor con IA</li>
+              <li>Cuenta atrás para tu examen, racha y recordatorios</li>
+            </ul>
+            <a class="boton claro" href="#descargar">Empezar gratis</a>
+          </div>
+          <div class="planc premium aparece">
+            <span class="sello">Todo incluido</span>
+            <h3>Rumbo Premium</h3>
+            <div class="precio">9,99 € <small>/ mes</small></div>
+            <p class="nota">Todo lo del plan gratuito y además:</p>
+            <ul>
+              <li>Preguntas y simulacros sin límite, incluido «¿Aprobarías hoy?»</li>
+              <li>Los exámenes oficiales completos de cada convocatoria</li>
+              <li>Repaso de tus fallos y de las preguntas que más caen</li>
+              <li>Ejercicios de carta y cálculo explicados paso a paso</li>
+              <li>Tu plan de estudio completo, con la sesión de cada día hasta el examen</li>
+              <li>Tutor con IA para todas tus dudas</li>
+              <li>Puedes cancelar cuando quieras desde la tienda</li>
+            </ul>
+            <a class="boton" href="#descargar">Probar 7 días gratis</a>
+          </div>
+        </div>
+        <p class="letra aparece">IVA incluido. La suscripción se paga y se gestiona desde App Store o Google Play y se renueva cada mes hasta que la canceles.</p>
+      </div>
+    </section>
+
+    <!-- Preguntas frecuentes -->
+    <section id="preguntas" style="padding-top:0">
+      <div class="envoltorio">
+        <div class="cabecera-sec aparece">
+          <span class="etiqueta">Preguntas frecuentes</span>
+          <h2>Lo que <em>suele preguntarse</em></h2>
+        </div>
+        <div class="faq">
+          <details class="aparece"><summary>¿Las preguntas son de exámenes reales?</summary><p>Sí. Salen de los enunciados y plantillas que publica la Dirección General de la Marina Mercante. Las preguntas anuladas por el tribunal no se incluyen.</p></details>
+          <details class="aparece"><summary>¿Cuánto cuesta?</summary><p>Rumbo tiene un plan gratuito para siempre y Rumbo Premium por 9,99 € al mes. Al crear tu cuenta tienes 7 días con todo desbloqueado, sin poner tarjeta.</p></details>
+          <details class="aparece"><summary>¿Cómo cancelo Premium?</summary><p>Cuando quieras, desde los ajustes de tu cuenta de App Store o Google Play (Suscripciones). Sigues teniendo Premium hasta el final del mes que ya has pagado y después pasas al plan gratuito sin perder tu progreso.</p></details>
+          <details class="aparece"><summary>¿Sirve para cualquier comunidad autónoma?</summary><p>Sí. El temario y el tipo de examen son los mismos en toda España. Además, en la app tienes las fechas de convocatoria de cada comunidad.</p></details>
+          <details class="aparece"><summary>¿Necesito la carta del Estrecho?</summary><p>Para practicar los ejercicios de carta del PER y el Patrón de Yate te vendrá bien tenerla, igual que el día del examen. Rumbo te explica cada tipo de ejercicio con dibujos para que sepas exactamente qué hacer sobre ella.</p></details>
+          <details class="aparece"><summary>¿El tutor con IA puede equivocarse?</summary><p>Como cualquier IA, a veces puede. Por eso está preparado con el temario oficial y te recordamos contrastar lo importante. Las respuestas correctas de los tests son siempre las oficiales.</p></details>
+          <details class="aparece"><summary>¿Qué pasa con mis datos?</summary><p>Solo guardamos tu cuenta y tu progreso para ayudarte a estudiar. Sin publicidad ni rastreo. Puedes borrar tu cuenta cuando quieras. <a href="#" data-ir="rumbo-privacy/">Política de privacidad</a>.</p></details>
+        </div>
+      </div>
+    </section>
+
+    <!-- Llamada final -->
+    <section id="descargar" class="final" style="padding-top:0">
+      <div class="envoltorio">
+        <div class="caja aparece">
+          <h2>Pon rumbo <em>a tu título</em></h2>
+          <p>Descarga Rumbo, elige tu convocatoria y empieza hoy. Un rato cada día cunde más de lo que parece.</p>
+          <div class="tiendas" data-tiendas></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="envoltorio pie">
+      <span>© <span data-anio></span> Rumbo · Prepara tu título náutico</span>
+      <nav>
+        <a href="#" data-ir="rumbo-privacy/">Privacidad</a>
+        <a href="#" data-ir="rumbo-delete-account/">Eliminar cuenta</a>
+        <a href="#" data-contacto>Contacto</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      var C = window.RUMBO_WEB || {};
+      var apple = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.37 12.6c-.02-2.2 1.8-3.26 1.88-3.31-1.03-1.5-2.62-1.7-3.18-1.73-1.35-.14-2.64.8-3.33.8-.69 0-1.74-.78-2.86-.76-1.47.02-2.83.86-3.59 2.17-1.53 2.66-.39 6.6 1.1 8.75.73 1.05 1.6 2.24 2.73 2.2 1.1-.05 1.51-.71 2.84-.71 1.32 0 1.7.71 2.86.69 1.18-.02 1.93-1.07 2.65-2.13.84-1.22 1.18-2.4 1.2-2.46-.03-.01-2.3-.88-2.3-3.51ZM14.2 6.13c.6-.73 1.01-1.75.9-2.76-.87.04-1.92.58-2.54 1.31-.56.65-1.05 1.68-.92 2.67.97.08 1.96-.49 2.56-1.22Z"/></svg>';
+      var play = '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#34A853" d="M3.6 2.3 13.4 12 3.6 21.7c-.36-.2-.6-.6-.6-1.07V3.37c0-.47.24-.87.6-1.07Z"/><path fill="#FBBC04" d="m16.7 15.3-3.3-3.3 3.3-3.3 3.72 2.12c.78.45.78 1.6 0 2.05L16.7 15.3Z"/><path fill="#4285F4" d="M16.7 8.7 13.4 12 3.6 2.3c.33-.19.75-.2 1.13.01L16.7 8.7Z"/><path fill="#EA4335" d="M16.7 15.3 4.73 21.7c-.38.2-.8.2-1.13-.01L13.4 12l3.3 3.3Z"/></svg>';
+      function tienda(url, icono, arriba, abajo) {
+        var a = document.createElement("a");
+        a.className = "tienda" + (url ? "" : " pronto");
+        a.href = url || "#"; if (url) { a.target = "_blank"; a.rel = "noopener"; }
+        a.innerHTML = icono + "<span><small>" + (url ? arriba : "Muy pronto en") + "</small><strong>" + abajo + "</strong></span>";
+        return a;
+      }
+      document.querySelectorAll("[data-tiendas]").forEach(function (el) {
+        el.appendChild(tienda(C.appStore, apple, "Descárgala en", "App Store"));
+        el.appendChild(tienda(C.googlePlay, play, "Disponible en", "Google Play"));
+      });
+      document.querySelectorAll("[data-ir]").forEach(function (a) { a.href = location.origin + "/" + a.dataset.ir; });
+      document.querySelectorAll("[data-anio]").forEach(function (e) { e.textContent = new Date().getFullYear(); });
+      document.querySelectorAll("[data-contacto]").forEach(function (a) {
+        if (C.correo) a.href = "mailto:" + C.correo; else a.remove();
+      });
+      // Animación suave al aparecer
+      var obs = "IntersectionObserver" in window ? new IntersectionObserver(function (es) {
+        es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add("visible"); obs.unobserve(e.target); } });
+      }, { threshold: 0.12 }) : null;
+      document.querySelectorAll(".aparece").forEach(function (el) { obs ? obs.observe(el) : el.classList.add("visible"); });
+    })();
+  </script>
+</body>
+</html>
